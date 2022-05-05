@@ -26,9 +26,6 @@ func Routes(app *fiber.App) {
 	app.Get("/product/:id", route.GetProduct)
 	app.Delete("/product/:id", route.Delete)
 	app.Put("/product/:id", route.Update)
-	//image
-	app.Get("/images", route.GetImages)
-	app.Get("/images/:id", route.GetImage)
 }
 
 func main() {
