@@ -27,11 +27,13 @@ func Routes(app *fiber.App) {
 }
 
 func main() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		fmt.Print("Could not load .env file")
+	}
+	port := os.Getenv("PORT")
 	database.Migration()
-
 	app := fiber.New()
-	app.Get("/", Welcome)
 	Routes(app)
-	app.Listen(":3000")
-
+	log.Fatal(app.Listen(":" + port))
 }
