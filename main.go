@@ -20,7 +20,7 @@ func Routes(app *fiber.App) {
 	//users
 	app.Post("/user", route.Registration)
 	app.Get("/user", route.GetUsers)
-	//foodlist
+	//Product
 	app.Post("/product", route.AddProduct)
 	app.Get("/product", route.GetProductName)
 	app.Get("/product/:id", route.GetProduct)
