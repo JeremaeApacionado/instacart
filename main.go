@@ -1,9 +1,15 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	"instacart/database"
 	"instacart/route"
+	"log"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
 func Welcome(c *fiber.Ctx) error {
