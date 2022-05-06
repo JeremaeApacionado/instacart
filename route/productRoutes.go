@@ -27,7 +27,7 @@ func GetProductName(c *fiber.Ctx) error {
 
 func FindProduct(id int, food *models.Product) error {
 	database.DB.Find(&food, "id=?", id)
-	if food.ID == 0 {
+	if food.ProductID == 0 {
 		return errors.New("ProductId does not existed")
 	}
 	return nil
