@@ -19,5 +19,5 @@ func Migration() {
 		log.Fatal("not connected to the database")
 	}
 	fmt.Print("connecteed to the database")
-	DB.AutoMigrate(&models.User{}, &models.Product{})
+	DB.AutoMigrate(&models.User{}, &models.Product{}, &models.Addtocart{})
 }
