@@ -1,7 +1,7 @@
 package route
 
 import (
-	"finstacart/database"
+	"instacart/database"
 	"instacart/model"
 
 	"github.com/gofiber/fiber/v2"
