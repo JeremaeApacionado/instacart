@@ -29,6 +29,9 @@ func Routes(app *fiber.App) {
 	//addtocart
 	app.Post("/addtocart", route.Getcart)
 	app.Get("/addtocart", route.Getcarts)
+	//cart
+	app.Post("/cart", route.Getorder)
+	app.Get("/cart", route.Getorders)
 }
 
 func main() {
