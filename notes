@@ -1,0 +1,15 @@
+Heroku
+Remote name for heroku (heroku)
+git add .
+git commit -am "message"
+git push + remote name + branch
+
+
+Github
+Github remote name (origin)
+git pull + remote name + branch
+git status
+git add . or git add + filename
+git status
+git commit -m "message"
+git push + remote name +branch
