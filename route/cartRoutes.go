@@ -16,7 +16,7 @@ func Getorder(c *fiber.Ctx) error {
 
 func Getorders(c *fiber.Ctx) error {
 	cart := models.Cart{}
-	database.DB.Find(&cart, "cart_id", )
+	database.DB.Find(&cart, "cart_id", cart)
 	fmt.Println(cart)
 
 	return c.JSON(cart)
