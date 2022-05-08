@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"instacart/database"
 	"instacart/route"
 	"log"
@@ -36,7 +37,7 @@ func main() {
 	if err != nil {
 		fmt.Print("Could not load .env file")
 	}
-	port := os.Getenv("PORT")
+	PORT := os.Getenv("PORT")
 	database.Migration()
 	app := fiber.New()
 	Routes(app)
