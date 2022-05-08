@@ -1,1 +1,1 @@
-web: bin/instacart
+app: bin/instacart

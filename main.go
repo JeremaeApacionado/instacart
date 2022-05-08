@@ -28,7 +28,7 @@ func Routes(app *fiber.App) {
 	//addtocart
 	app.Post("/addtocart", route.Getcart)
 	app.Get("/addtocart/:id", route.Getcarts)
-	app.Get("/result/:id", route.Order)
+	app.Get("/sample/:id", route.Sample)
 }
 
 func main() {

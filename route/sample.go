@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Order(c *fiber.Ctx) error {
+func Sample(c *fiber.Ctx) error {
 	je := make(map[string]interface{})
 	// database.DB.Debug().Select("user_id").Find(&je)
 	database.DB.Debug().Table("products p").
