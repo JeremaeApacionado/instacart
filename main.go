@@ -5,7 +5,6 @@ import (
 	"instacart/database"
 	"instacart/route"
 	"log"
-	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -28,10 +27,8 @@ func Routes(app *fiber.App) {
 	app.Put("/product/:id", route.Update)
 	//addtocart
 	app.Post("/addtocart", route.Getcart)
-	app.Get("/addtocart", route.Getcarts)
-	//cart
-	app.Post("/cart", route.Getorder)
-	app.Get("/cart", route.Getorders)
+	app.Get("/addtocart/:id", route.Getcarts)
+	app.Get("/result/:id", route.Order)
 }
 
 func main() {
@@ -39,9 +36,9 @@ func main() {
 	if err != nil {
 		fmt.Print("Could not load .env file")
 	}
-	port := os.Getenv("PORT")
+	// port := os.Getenv("PORT")
 	database.Migration()
 	app := fiber.New()
 	Routes(app)
-	log.Fatal(app.Listen(":" + port))
+	log.Fatal(app.Listen(":" + "8081"))
 }

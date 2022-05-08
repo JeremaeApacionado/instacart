@@ -1,24 +1,18 @@
 package route
 
 import (
-	"instacart/database"
-	"instacart/models"
 	"fmt"
+	"instacart/database"
 
 	"github.com/gofiber/fiber/v2"
 )
-//add to cart
-func Getorder(c *fiber.Ctx) error {
-	cart := []models.Cart{}
-	database.DB.Find(&cart)
-	return c.JSON(cart)
-}
 
-func Getorders(c *fiber.Ctx) error {
-	cart := models.Cart{}
-	database.DB.Find(&cart, "cart_id", cart)
-	fmt.Println(cart)
-
-	return c.JSON(cart)
-
+func Order(c *fiber.Ctx) error {
+	je := make(map[string]interface{})
+	// database.DB.Debug().Select("user_id").Find(&je)
+	database.DB.Debug().Table("products p").
+		Select("p.product_id, p.name, p.description, p.images, p.stars, c.quantity_ordered").
+		Joins("JOIN addtocarts c ON p.product_id = c.product_id").Find(&je)
+	fmt.Println(je)
+	return c.JSON(je)
 }
