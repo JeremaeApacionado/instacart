@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		fmt.Print("Could not load .env file")
 	}
-	// port := os.Getenv("PORT")
+	port := os.Getenv("PORT")
 	database.Migration()
 	app := fiber.New()
 	Routes(app)
