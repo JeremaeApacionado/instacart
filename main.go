@@ -40,5 +40,5 @@ func main() {
 	database.Migration()
 	app := fiber.New()
 	Routes(app)
-	log.Fatal(app.Listen(":" + "8081"))
+	log.Fatal(app.Listen(":" + PORT))
 }
