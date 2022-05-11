@@ -3,9 +3,9 @@ package route
 import (
 	"fmt"
 	"log"
-	"instacarts/database"
-	"instacarts/model"
-	"instacarts/util"
+	"instacart/database"
+	"instacart/model"
+	"instacart/util"
 
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
