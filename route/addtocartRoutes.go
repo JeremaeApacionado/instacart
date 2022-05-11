@@ -8,10 +8,21 @@ import (
 )
 
 //add to cart
-func Getcart(c *fiber.Ctx) error {
-	je := []models.Addtocart{}
-	database.DB.Find(&je)
-	return c.JSON(je)
+func AddToCart(c *fiber.Ctx) error {
+	cart := models.Addtocart{}
+	if err := c.BodyParser(&cart); err != nil {
+		return err
+	}
+	result := database.DB.Debug().Create(&cart)
+	if result.RowsAffected > 0 {
+		return c.JSON("Success insert")
+	}
+
+	return c.JSON(result.Error)
+	// return failed insert// result2 := database.DB.Debug().FirstOrCreate(&je,  "id = ?", 5)
+	// fmt.Println(result2)
+	//database.DB.Debug().Create(je)
+	
 }
 
 func getUserInfo(userID int) map[string]interface{} {
@@ -19,6 +30,7 @@ func getUserInfo(userID int) map[string]interface{} {
 	database.DB.Table("users").Select("user_id, fullname, email, address").Find(&user, "user_id", userID)
 	return user
 }
+
 
 func getProductDetails(product_id []uint) []map[string]interface{} {
 	// product := make(map[string]interface{})
@@ -31,15 +43,16 @@ func getProductDetails(product_id []uint) []map[string]interface{} {
 	return result
 }
 
-func Getcarts(c *fiber.Ctx) error {
-	id, _ := c.ParamsInt("id")
+
+func GetCart(c *fiber.Ctx) error {
+	userID, _ := c.ParamsInt("userID")
 	je := []models.Addtocart{}
 	user := make(map[string]interface{})
 	cartProduct := []map[string]interface{}{}
-	database.DB.Debug().Find(&je, "user_id = ?", id)
+	database.DB.Debug().Find(&je, "user_id = ?", userID)
 	mapInterface := make(map[string]interface{})
 	if len(je) > 0 {
-		user = getUserInfo(id)
+		user = getUserInfo(userID)
 		prodIDs := []uint{}
 		for _, element := range je {
 			prodIDs = append(prodIDs, element.ProductID)
