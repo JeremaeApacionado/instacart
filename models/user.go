@@ -2,9 +2,9 @@ package models
 
 type User struct {
 	UserID       uint   `json:"id" gorm:"primaryKey; autoIncrement"`
-	fullname 	  string `json:"fullname"`
-	email   	  string `json:"email"`
-	address		  string `json:"address"`
-	username	  string `json:"username"`
-	password  	  string `json:"password"`
+	Fullname 	  string `json:"fullname"`
+	Email   	  string `json:"email"`
+	Address		  string `json:"address"`
+	Username	  string `json:"username"`
+	Password  	  string `json:"password"`
 }
