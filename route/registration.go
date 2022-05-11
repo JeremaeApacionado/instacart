@@ -16,8 +16,8 @@ func Registration(c *fiber.Ctx) error {
 	if err := c.BodyParser(&new_user); err != nil {
 		return c.Status(500).SendString("Server error")
 	}
-	regEmail := regexp.MustCompile("[a=zA-Z0-9_]+@[yahoogmail]+[.][com]{3}")
-	formatterEmail := regEmail.MatchString(new_user.Email)
+	// regEmail := regexp.MustCompile("[a=zA-Z0-9_]+@[yahoogmail]+[.][com]{3}")
+	// formatterEmail := regEmail.MatchString(new_user.Email)
 	database.DB.Find(&user, "email=?", new_user.Email)
 	database.DB.Find(&user, "username=?", new_user.Username)
 	uniqueEmail := new_user.Email != user.Email
