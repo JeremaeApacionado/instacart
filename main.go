@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"instacart/database"
 	"instacart/route"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -27,8 +27,10 @@ func Routes(app *fiber.App) {
 	app.Delete("/product/:id", route.Delete)
 	app.Put("/product/:id", route.Update)
 	//addtocart
-	app.Post("/addtocart", route.Getcart)
-	app.Get("/addtocart/:id", route.Getcarts)
+	app.Post("/addtocart", route.AddToCart)
+	app.Get("/getcart/:userID", route.GetCart)
+	//login
+	app.Post("/login",route.Log)
 }
 
 func main() {

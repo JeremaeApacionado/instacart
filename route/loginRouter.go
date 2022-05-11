@@ -11,6 +11,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type Login struct {
+	Email string `json:"Email"`
+	Password string `json:"Password"`
+}
+
 func Log(c *fiber.Ctx) error {
 	var log models.Login
 	var user models.User
