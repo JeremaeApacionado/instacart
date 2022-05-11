@@ -31,12 +31,11 @@ func Log(c *fiber.Ctx) error {
 			})
 		}
 		fmt.Print("password match", match)
-		response := CreateUserResponse(user)
 		return c.JSON(&fiber.Map{
 
 			"success": true,
 			"message": "Login Success",
-			"data":    response,
+			"data":    user,
 		})
 	}
 
