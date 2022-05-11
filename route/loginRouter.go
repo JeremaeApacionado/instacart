@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"instacart/database"
-	"instacart/model"
+	"instacart/models"
 	"instacart/util"
 
 	"github.com/gofiber/fiber/v2"
