@@ -21,10 +21,10 @@ func Log(c *fiber.Ctx) error {
 	var user models.User
 	util.BodyParser(c, &log)
 	
-	database.DB.Find(&user, "username=?", log.Username)
-	if log.Username != user.Username {
+	database.DB.Find(&user, "Email=?", log.Email)
+	if log.Email != user.Email {
 		return c.JSON(&fiber.Map{
-			"message":       "Wrong Username or Password",
+			"message":       "Wrong Email or Password",
 			"login_success": false,
 		})
 	} else {
