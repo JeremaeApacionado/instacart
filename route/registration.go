@@ -1,7 +1,7 @@
 package route
 
 import (
-	"regexp"
+	// "regexp"
 	"instacart/database"
 	"instacart/models"
 
@@ -27,12 +27,9 @@ func Registration(c *fiber.Ctx) error {
 	hash, _ := HashPassword(new_user.Password)
 	new_user.Password = hash
 
-	if formatterEmail && uniqueEmail && uniqueUsername && usernameLength && passwordLength {
+	if  uniqueEmail && uniqueUsername && usernameLength && passwordLength {
 		database.DB.Create(&new_user)
 	} else {
-		if !formatterEmail {
-			return c.SendString("Email not valid")
-		}
 		if !uniqueEmail {
 			return c.SendString("Email already exist!")
 		}
