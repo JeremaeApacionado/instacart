@@ -17,9 +17,9 @@ func Welcome(c *fiber.Ctx) error {
 
 func Routes(app *fiber.App) {
 
-	//users
-	app.Post("/user", route.Registration)
-	app.Get("/user", route.GetUsers)
+	//customer
+	app.Post("/customer", route.CustomerReg)
+	app.Get("/customer", route.GetCustomer)
 	//Product
 	app.Post("/product", route.AddProduct)
 	app.Get("/product", route.GetProductName)
@@ -29,8 +29,11 @@ func Routes(app *fiber.App) {
 	//addtocart
 	app.Post("/addtocart", route.AddToCart)
 	app.Get("/getcart/:userID", route.GetCart)
-	//login
+	//logincustomer
 	app.Post("/login",route.Log)
+	//adminreg
+	app.Post("/admin", route.AdminReg)
+	app.Get("/admin", route.GetAdmin)
 }
 
 func main() {
