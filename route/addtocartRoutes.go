@@ -19,9 +19,6 @@ func AddToCart(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(result.Error)
-	// return failed insert// result2 := database.DB.Debug().FirstOrCreate(&je,  "id = ?", 5)
-	// fmt.Println(result2)
-	//database.DB.Debug().Create(je)
 	
 }
 

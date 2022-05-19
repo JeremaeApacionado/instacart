@@ -3,7 +3,7 @@ package route
 import (
 	"errors"
 	"instacart/database"
-"instacart/models"
+	"instacart/models"
 	"github.com/gofiber/fiber/v2"
 )
 
