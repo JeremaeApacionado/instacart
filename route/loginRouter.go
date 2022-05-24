@@ -19,18 +19,12 @@ type Login struct {
 func Log(c *fiber.Ctx) error {
 	var log Login
 	var user models.Customer
-	var user1 models.Admin
 	util.BodyParser(c, &log)
 	
-	database.DB.Find(&user,&user1, "Email=?", log.Email)
+	database.DB.Find(&user, "Email=?", log.Email)
 	if log.Email != user.Email {
 		return c.JSON(&fiber.Map{
 			"message":       "Wrong Email or Password",
-			"login_success": false,
-		})
-	}else if (user.Email == user1.Email){
-		return c.JSON(&fiber.Map{
-			"message": "Wrong Email or Password",
 			"login_success": false,
 		})
 	}else {
