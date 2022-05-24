@@ -46,7 +46,7 @@ func CustomerReg(c *fiber.Ctx) error {
 
 	return c.JSON(&fiber.Map{
 		"message": "User successfully registered as Customer",
-		"USER":    new_user,
+		"Users":    new_user,
 	})
 
 }
