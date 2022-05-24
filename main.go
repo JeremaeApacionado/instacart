@@ -31,9 +31,6 @@ func Routes(app *fiber.App) {
 	app.Get("/getcart/:userID", route.GetCart)
 	//logincustomer
 	app.Post("/login",route.Log)
-	//adminreg
-	app.Post("/admin", route.AdminReg)
-	app.Get("/admin", route.GetAdmin)
 }
 
 func main() {
