@@ -46,7 +46,7 @@ func AdminReg(c *fiber.Ctx) error {
 
 	return c.JSON(&fiber.Map{
 		"message": "User successfully registered as Customer",
-		"ADMIN":    new_admin,
+		"Admin":    new_admin,
 	})
 
 }
@@ -65,6 +65,7 @@ func GetAdmin(c *fiber.Ctx) error {
 		})
 	}
 	return c.JSON(&fiber.Map{
-		"Admins": admin,
+		"message": "User successfully registered as Admin",
+		"Admin": admin,
 	})
 }
