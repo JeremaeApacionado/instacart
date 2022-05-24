@@ -1,6 +1,6 @@
 package models
 
-type Customer struct {
+type User struct {
 	UserID       uint   `json:"id" gorm:"primaryKey; autoIncrement"`
 	Fullname 	  string `json:"Fullname"`
 	Email   	  string `json:"Email"`

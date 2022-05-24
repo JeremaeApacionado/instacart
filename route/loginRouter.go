@@ -18,7 +18,7 @@ type Login struct {
 
 func Log(c *fiber.Ctx) error {
 	var log Login
-	var user models.Customer
+	var user models.User
 	util.BodyParser(c, &log)
 	
 	database.DB.Find(&user, "Email=?", log.Email)

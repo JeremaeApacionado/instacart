@@ -1,34 +1,34 @@
 package route
 
 import (
-	"regexp"
 	"instacart/database"
 	"instacart/models"
+	"regexp"
 
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func CustomerReg(c *fiber.Ctx) error {
-	var customer models.Customer
-	new_customer := new(models.Customer)
+	var user models.User
+	new_user := new(models.User)
 
-	if err := c.BodyParser(&new_customer); err != nil {
+	if err := c.BodyParser(&new_user); err != nil {
 		return c.Status(500).SendString("Server error")
 	}
 	regEmail := regexp.MustCompile("[a=zA-Z0-9_]+@[yahoogmail]+[.][com]{3}")
-	formatterEmail := regEmail.MatchString(new_customer.Email)
-	database.DB.Find(&customer, "email=?", new_customer.Email)
-	database.DB.Find(&customer, "username=?", new_customer.Username)
-	uniqueEmail := new_customer.Email != customer.Email
-	uniqueUsername := new_customer.Username != customer.Username
-	usernameLength := len(new_customer.Username) >= 8
-	passwordLength := len(new_customer.Password) >= 8
-	hash, _ := HashPasswordC(new_customer.Password)
-	new_customer.Password = hash
+	formatterEmail := regEmail.MatchString(new_user.Email)
+	database.DB.Find(&user, "email=?", new_user.Email)
+	database.DB.Find(&user, "username=?", new_user.Username)
+	uniqueEmail := new_user.Email != user.Email
+	uniqueUsername := new_user.Username != user.Username
+	usernameLength := len(new_user.Username) >= 8
+	passwordLength := len(new_user.Password) >= 8
+	hash, _ := HashPasswordC(new_user.Password)
+	new_user.Password = hash
 
 	if  formatterEmail&& uniqueEmail && uniqueUsername && usernameLength && passwordLength {
-		database.DB.Create(&new_customer)
+		database.DB.Create(&new_user)
 	} else {
 		if !uniqueEmail {
 			return c.SendString("Email already exist!")
@@ -46,7 +46,7 @@ func CustomerReg(c *fiber.Ctx) error {
 
 	return c.JSON(&fiber.Map{
 		"message": "User successfully registered as Customer",
-		"CUSTOMER":    new_customer,
+		"USER":    new_user,
 	})
 
 }
@@ -57,14 +57,14 @@ func HashPasswordC(password string) (string, error) {
 }
 
 func GetCustomer(c *fiber.Ctx) error {
-	var customer []models.Customer
-	database.DB.Find(&customer)
-	if len(customer) == 0 {
+	var user []models.User
+	database.DB.Find(&user)
+	if len(user) == 0 {
 		return c.JSON(&fiber.Map{
 			"Message": "User Does not Exist!",
 		})
 	}
 	return c.JSON(&fiber.Map{
-		"Users": customer,
+		"Users": user,
 	})
 }
