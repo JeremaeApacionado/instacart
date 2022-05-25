@@ -19,5 +19,5 @@ var DNS = "host=ec2-107-22-238-112.compute-1.amazonaws.com user=bnsoflomemgdeq p
 		log.Fatal("not connected to the database")
 	}
 	fmt.Print("connected to the database")
-	DB.AutoMigrate(&models.User{}, &models.Product{}, &models.Addtocart{})
+	DB.AutoMigrate(&models.User{}, &models.Product{}, &models.Addtocart{}, &models.Admin{})
 }

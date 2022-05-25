@@ -17,7 +17,7 @@ func Welcome(c *fiber.Ctx) error {
 
 func Routes(app *fiber.App) {
 
-	//customer
+	//customerregister
 	app.Post("/user", route.CustomerReg)
 	app.Get("/user", route.GetCustomer)
 	//Product
