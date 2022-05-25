@@ -27,7 +27,7 @@ func AdminReg(c *fiber.Ctx) error {
 	hash, _ := HashPasswordC(new_user.Password)
 	new_user.Password = hash
 
-	if formatterEmail&& uniqueEmail && uniqueUsername && usernameLength && passwordLength {
+	if formatterEmail && uniqueEmail && uniqueUsername && usernameLength && passwordLength {
 		database.DB.Create(&new_user)
 	} else {
 		if !uniqueEmail {
@@ -46,7 +46,7 @@ func AdminReg(c *fiber.Ctx) error {
 
 	return c.JSON(&fiber.Map{
 		"message": "Admin successfully registered",
-		"USER":    new_user,
+		"ADMIN":   new_user,
 	})
 
 }
@@ -69,6 +69,6 @@ func GetAdmin(c *fiber.Ctx) error {
 		})
 	}
 	return c.JSON(&fiber.Map{
-		"Users": admin,
+		"Admins": admin,
 	})
 }
