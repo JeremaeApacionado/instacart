@@ -11,24 +11,24 @@ import (
 
 func AdminReg(c *fiber.Ctx) error {
 	var admin models.Admin
-	new_user := new(models.Admin)
+	new_admin := new(models.Admin)
 
-	if err := c.BodyParser(&new_user); err != nil {
+	if err := c.BodyParser(&new_admin); err != nil {
 		return c.Status(500).SendString("Server error")
 	}
 	regEmail := regexp.MustCompile("[a=zA-Z0-9_]+@[yahoogmail]+[.][com]{3}")
-	formatterEmail := regEmail.MatchString(new_user.Email)
-	database.DB.Find(&admin, "email=?", new_user.Email)
-	database.DB.Find(&admin, "username=?", new_user.Username)
-	uniqueEmail := new_user.Email != admin.Email
-	uniqueUsername := new_user.Username != admin.Username
-	usernameLength := len(new_user.Username) >= 8
-	passwordLength := len(new_user.Password) >= 8
-	hash, _ := HashPasswordC(new_user.Password)
-	new_user.Password = hash
+	formatterEmail := regEmail.MatchString(new_admin.Email)
+	database.DB.Find(&admin, "email=?", new_admin.Email)
+	database.DB.Find(&admin, "username=?", new_admin.Username)
+	uniqueEmail := new_admin.Email != admin.Email
+	uniqueUsername := new_admin.Username != admin.Username
+	usernameLength := len(new_admin.Username) >= 8
+	passwordLength := len(new_admin.Password) >= 8
+	hash, _ := HashPasswordC(new_admin.Password)
+	new_admin.Password = hash
 
 	if formatterEmail && uniqueEmail && uniqueUsername && usernameLength && passwordLength {
-		database.DB.Create(&new_user)
+		database.DB.Create(&new_admin)
 	} else {
 		if !uniqueEmail {
 			return c.SendString("Email already exist!")
@@ -46,7 +46,7 @@ func AdminReg(c *fiber.Ctx) error {
 
 	return c.JSON(&fiber.Map{
 		"message": "Admin successfully registered",
-		"ADMIN":   new_user,
+		"ADMIN":   new_admin,
 	})
 
 }
@@ -65,7 +65,7 @@ func GetAdmin(c *fiber.Ctx) error {
 	database.DB.Find(&admin)
 	if len(admin) == 0 {
 		return c.JSON(&fiber.Map{
-			"Message": "User Does not Exist!",
+			"Message": "User Admin Does not Exist!",
 		})
 	}
 	return c.JSON(&fiber.Map{
